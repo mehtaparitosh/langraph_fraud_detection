@@ -1,0 +1,7 @@
+entity_type,value,reason,added_ts
+card,CARD_BLOCKED,confirmed_fraud_ring,2026-08-22 12:00:00
+card,CARD_BAD_2,chargeback_abuse,2026-08-22 12:00:00
+device,DEV_BLOCKED,known_fraud_device,2026-08-22 12:00:00
+device,DEV_BAD_2,device_farm,2026-08-22 12:00:00
+ip,203.0.113.66,tor_exit_node,2026-08-22 12:00:00
+ip,203.0.113.99,botnet_c2,2026-08-22 12:00:00

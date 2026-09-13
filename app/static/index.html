@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FraudGraph</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>FraudGraph</h1>
+    <p class="tag">Agentic fraud detection on LangGraph — <strong>the LLM never authorizes a decision.</strong></p>
+  </header>
+
+  <main>
+    <section class="left">
+      <div class="panel">
+        <h2>1 · Input</h2>
+        <label>Demo transaction
+          <select id="default">
+            <option value="clean">clean → auto-approve</option>
+            <option value="blocklist">blocklist → auto-decline</option>
+            <option value="velocity" selected>velocity → investigate → consent</option>
+            <option value="high_value">high value → investigate → consent/step-up</option>
+          </select>
+        </label>
+        <p id="txn-desc" class="desc"></p>
+        <details class="payload">
+          <summary>View payload (JSON)</summary>
+          <pre id="payload-json"></pre>
+        </details>
+        <label class="upload">or upload a transaction JSON
+          <input type="file" id="file" accept="application/json" />
+        </label>
+        <button id="run">Run</button>
+        <p id="status" class="status"></p>
+      </div>
+
+      <div class="panel pause" id="pause" hidden>
+        <h2>⏸ Action needed</h2>
+        <div id="consent" hidden>
+          <p id="consent-rec" class="rec"></p>
+          <div class="buttons">
+            <button data-choice="approve" class="approve">Approve</button>
+            <button data-choice="step_up" class="stepup">Step-up (OTP)</button>
+            <button data-choice="decline" class="decline">Decline</button>
+            <button data-choice="escalate" class="escalate">Escalate</button>
+          </div>
+        </div>
+        <div id="otp" hidden>
+          <p id="otp-note"></p>
+          <input type="text" id="otp-code" inputmode="numeric" placeholder="6-digit code" />
+          <button id="otp-submit">Submit code</button>
+        </div>
+      </div>
+
+      <div class="panel result" id="result" hidden>
+        <h2>Result</h2>
+        <p class="decision">Decision: <span id="r-decision">—</span> <span id="r-badge" class="badge"></span></p>
+        <p class="provenance">How: <span id="r-how">—</span></p>
+        <p>Risk band: <span id="r-band">—</span> · Rule score: <span id="r-score">—</span> · ML: <span id="r-ml">—</span></p>
+        <p>Reason codes: <span id="r-reasons">—</span></p>
+        <div id="r-rec-wrap" hidden><h3>LLM recommendation (advisory)</h3><p id="r-rec"></p></div>
+        <div id="r-summary-wrap" hidden><h3>Analyst summary</h3><div id="r-summary" class="md"></div></div>
+        <div id="r-sar-wrap" hidden><h3>SAR draft</h3><div id="r-sar" class="md"></div></div>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="panel">
+        <h2>2 · Graph</h2>
+        <div class="graph">
+          <div class="row"><div class="node" data-node="ingest">ingest</div></div>
+          <div class="arrow">↓</div>
+          <div class="row"><div class="node" data-node="enrich">enrich<small>local checks</small></div></div>
+          <div class="arrow">↓</div>
+          <div class="row"><div class="node" data-node="score">score<small>engine + ML</small></div></div>
+          <div class="arrow">↓ route by risk + amount</div>
+          <div class="row branch">
+            <div class="node ok" data-node="auto_approve">auto_approve</div>
+            <div class="node bad" data-node="auto_decline">auto_decline</div>
+            <div class="node" data-node="investigate">investigate<small>LLM + tools + RAG</small></div>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="row"><div class="node dbl" data-node="human_gate">human_gate<small>consent</small></div></div>
+          <div class="arrow">↓</div>
+          <div class="row"><div class="node dbl" data-node="step_up">step_up<small>OTP</small></div></div>
+          <div class="arrow">↓</div>
+          <div class="row"><div class="node" data-node="draft_sar">draft_sar<small>narrative</small></div></div>
+          <div class="arrow">↓</div>
+          <div class="row"><div class="node" data-node="finalize">finalize</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Event log</h2>
+        <pre id="log" class="log"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

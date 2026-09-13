@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+
+# Generated data (seeds are committed; everything else is regenerated)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/model.pkl
+data/chroma/
+data/checkpoints.db
+
+# Course reference notebooks (kept locally, not part of the project)
+context/*.ipynb
+
+# Tooling
+.pytest_cache/
+.DS_Store

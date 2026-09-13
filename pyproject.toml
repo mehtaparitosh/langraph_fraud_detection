@@ -1,0 +1,47 @@
+[project]
+name = "fraud-graph"
+version = "0.1.0"
+description = "Local-first agentic fraud-detection demo on LangGraph. The LLM never authorizes a decision."
+readme = "README.md"
+authors = [
+    { name = "Paritosh Mehta", email = "mehta.paritosh95@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "langgraph",
+    "langgraph-checkpoint-sqlite",
+    "langchain-core",
+    "langchain-anthropic",
+    "langchain-openai",
+    "chromadb",
+    "sentence-transformers",
+    "scikit-learn",
+    "xgboost",
+    "duckdb",
+    "pandas",
+    "fastapi",
+    "uvicorn",
+    "websockets",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+fraud-graph = "fraudgraph:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "fraudgraph"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: tests that load the local embedding model (deselect with -m 'not slow')",
+]

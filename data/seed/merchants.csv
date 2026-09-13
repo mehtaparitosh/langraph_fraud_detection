@@ -1,0 +1,46 @@
+merchant_id,name,category,risk_level,chargeback_rate
+MERCH_0000,Grocery Store 0,grocery,low,0.0029
+MERCH_0001,Utilities Store 1,utilities,low,0.0004
+MERCH_0002,Restaurant Store 2,restaurant,low,0.0099
+MERCH_0003,Retail Store 3,retail,low,0.0075
+MERCH_0004,Travel Store 4,travel,medium,0.036
+MERCH_0005,Electronics Store 5,electronics,medium,0.021
+MERCH_0006,Jewellery Store 6,jewellery,medium,0.0368
+MERCH_0007,Gambling Store 7,gambling,high,0.0998
+MERCH_0008,Crypto Store 8,crypto,high,0.1301
+MERCH_0009,Gift_Cards Store 9,gift_cards,high,0.1102
+MERCH_0010,Grocery Store 10,grocery,low,0.0082
+MERCH_0011,Utilities Store 11,utilities,low,0.0008
+MERCH_0012,Restaurant Store 12,restaurant,low,0.006
+MERCH_0013,Retail Store 13,retail,low,0.0035
+MERCH_0014,Travel Store 14,travel,medium,0.0399
+MERCH_0015,Electronics Store 15,electronics,medium,0.0384
+MERCH_0016,Jewellery Store 16,jewellery,medium,0.0209
+MERCH_0017,Gambling Store 17,gambling,high,0.0643
+MERCH_0018,Crypto Store 18,crypto,high,0.0535
+MERCH_0019,Gift_Cards Store 19,gift_cards,high,0.0866
+MERCH_0020,Grocery Store 20,grocery,low,0.0038
+MERCH_0021,Utilities Store 21,utilities,low,0.0068
+MERCH_0022,Restaurant Store 22,restaurant,low,0.0076
+MERCH_0023,Retail Store 23,retail,low,0.004
+MERCH_0024,Travel Store 24,travel,medium,0.0321
+MERCH_0025,Electronics Store 25,electronics,medium,0.0269
+MERCH_0026,Jewellery Store 26,jewellery,medium,0.0234
+MERCH_0027,Gambling Store 27,gambling,high,0.0991
+MERCH_0028,Crypto Store 28,crypto,high,0.0952
+MERCH_0029,Gift_Cards Store 29,gift_cards,high,0.0588
+MERCH_0030,Grocery Store 30,grocery,low,0.0068
+MERCH_0031,Utilities Store 31,utilities,low,0.0035
+MERCH_0032,Restaurant Store 32,restaurant,low,0.0089
+MERCH_0033,Retail Store 33,retail,low,0.0093
+MERCH_0034,Travel Store 34,travel,medium,0.0136
+MERCH_0035,Electronics Store 35,electronics,medium,0.0337
+MERCH_0036,Jewellery Store 36,jewellery,medium,0.0211
+MERCH_0037,Gambling Store 37,gambling,high,0.0586
+MERCH_0038,Crypto Store 38,crypto,high,0.1219
+MERCH_0039,Gift_Cards Store 39,gift_cards,high,0.1323
+MERCH_GROCERY,Daily Grocery,grocery,low,0.004
+MERCH_CRYPTO,CoinBazaar,crypto,high,0.11
+MERCH_GIFTCARDS,GiftCard Hub,gift_cards,high,0.09
+MERCH_JEWELLERY,Golden Jewels,jewellery,medium,0.02
+MERCH_ELECTRONICS,Gadget World,electronics,medium,0.018
