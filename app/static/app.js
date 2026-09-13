@@ -180,11 +180,7 @@ function openStream() {
   ws.onclose = () => log("(stream closed)");
 }
 
-async function readFileTxn() {
-  const f = $("#file").files[0];
-  if (!f) return null;
-  return JSON.parse(await f.text());
-}
+let customTxn = null; // set when the user enters a custom JSON; null = use the dropdown
 
 let defaultsData = {};
 async function loadDefaults() {
@@ -193,11 +189,10 @@ async function loadDefaults() {
   } catch (e) { /* leave empty */ }
   updateDescription();
 }
-async function updateDescription() {
-  const uploaded = await readFileTxn();
-  if (uploaded) {
-    $("#txn-desc").textContent = "Uploaded transaction.";
-    $("#payload-json").textContent = JSON.stringify(uploaded, null, 2);
+function updateDescription() {
+  if (customTxn) {
+    $("#txn-desc").textContent = "Custom transaction.";
+    $("#payload-json").textContent = JSON.stringify(customTxn, null, 2);
     return;
   }
   const d = defaultsData[$("#default").value];
@@ -207,12 +202,47 @@ async function updateDescription() {
   }
 }
 
+// --- custom-JSON modal ---
+const EXAMPLE_TXN = {
+  txn_id: "TXN_CUSTOM", card_id: "CARD_0001", device_id: "DEV_0001",
+  ip: "10.0.0.1", merchant_id: "MERCH_0001", amount: 1500,
+  geo: "IN-Mumbai", ts: "2026-09-01 12:00:00",
+};
+function openModal() {
+  const tmpl = customTxn || (defaultsData[$("#default").value] || {}).transaction || EXAMPLE_TXN;
+  $("#modal-json").value = JSON.stringify(tmpl, null, 2);
+  $("#modal-error").textContent = "";
+  $("#modal").hidden = false;
+  $("#modal-json").focus();
+}
+function closeModal() { $("#modal").hidden = true; }
+function useModalJson() {
+  let parsed;
+  try {
+    parsed = JSON.parse($("#modal-json").value);
+  } catch (e) {
+    $("#modal-error").textContent = "Invalid JSON: " + e.message;
+    return;
+  }
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+    $("#modal-error").textContent = "Expected a JSON object (a single transaction).";
+    return;
+  }
+  if (!parsed.card_id || parsed.amount === undefined || parsed.amount === null) {
+    $("#modal-error").textContent = "Transaction needs at least card_id and amount.";
+    return;
+  }
+  customTxn = parsed;
+  closeModal();
+  updateDescription();
+  run();
+}
+
 async function run() {
   resetGraph();
   runStart = Date.now();
   $("#status").textContent = "Running…";
-  const uploaded = await readFileTxn();
-  const body = uploaded ? { transaction: uploaded } : { default: $("#default").value };
+  const body = customTxn ? { transaction: customTxn } : { default: $("#default").value };
   const res = await fetch("/run", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -226,8 +256,13 @@ async function run() {
 }
 
 $("#run").addEventListener("click", run);
-$("#default").addEventListener("change", updateDescription);
-$("#file").addEventListener("change", updateDescription);
+// Selecting a demo transaction clears any custom JSON.
+$("#default").addEventListener("change", () => { customTxn = null; updateDescription(); });
+$("#custom-btn").addEventListener("click", openModal);
+$("#modal-cancel").addEventListener("click", closeModal);
+$("#modal-run").addEventListener("click", useModalJson);
+$("#modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeModal(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#modal").hidden) closeModal(); });
 loadDefaults();
 document.querySelectorAll("#consent .buttons button").forEach((b) =>
   b.addEventListener("click", () => resumeWith(b.dataset.choice))

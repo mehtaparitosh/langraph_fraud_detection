@@ -13,7 +13,9 @@ engine or a human decides; models only score and (later) explain.
 - [x] **Phase 4 — LLM investigate + RAG**: tool-calling agent, Chroma RAG, SAR drafter, governance guard.
 - [x] **Phase 5 — human gate + step-up (OTP) + email**: `interrupt()` consent + OTP, idempotent SMTP send.
 - [x] **Phase 6 — web app**: FastAPI + WebSocket, live node highlighting, consent/OTP panels, result view.
-- [ ] Phase 7 — polish + demo script + AWS talk track ← next
+- [x] **Phase 7 — polish**: canned demo transactions, README (diagrams + AWS mapping), one-page talk track.
+
+**All 7 phases complete.**
 
 ## Run it
 
@@ -45,6 +47,8 @@ uv run pytest                                     # 28 tests, all green
 | Email/OTP | `messenger.py` + `notifications.py` | SMTP send; idempotent OTP make/send/verify (tiny SQLite store) |
 | CLI | `scripts/run_cli.py` | run a transaction; interactive consent + OTP prompts on interrupt |
 | Web | `app/server.py` + `app/static/` | FastAPI `/run` + WS `/stream` + `/resume`; live graph UI, consent/OTP panels |
+| Demo | `demo/transactions/` + `demo/README.md` | 4 canned inputs, one per path |
+| Docs | `README.md` + `TALK_TRACK.md` | diagrams + local↔AWS mapping + narration script |
 
 ## The four crafted transactions (the demo backbone)
 

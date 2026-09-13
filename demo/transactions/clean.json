@@ -1,0 +1,10 @@
+{
+  "txn_id": "TXN_CLEAN",
+  "card_id": "CARD_CLEAN",
+  "device_id": "DEV_CLEAN",
+  "ip": "10.0.0.10",
+  "merchant_id": "MERCH_GROCERY",
+  "amount": 1250.0,
+  "geo": "IN-Mumbai",
+  "ts": "2026-09-01 12:00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "txn_id": "TXN_BLOCKED",
+  "card_id": "CARD_BLOCKED",
+  "device_id": "DEV_BLOCKED",
+  "ip": "203.0.113.66",
+  "merchant_id": "MERCH_CRYPTO",
+  "amount": 9800.0,
+  "geo": "RU-Moscow",
+  "ts": "2026-09-01 12:00:00"
+}

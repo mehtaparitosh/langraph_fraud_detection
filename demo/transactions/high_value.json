@@ -1,0 +1,10 @@
+{
+  "txn_id": "TXN_HIVAL",
+  "card_id": "CARD_HIVAL",
+  "device_id": "DEV_HIVAL",
+  "ip": "10.0.0.20",
+  "merchant_id": "MERCH_JEWELLERY",
+  "amount": 250000.0,
+  "geo": "IN-Bangalore",
+  "ts": "2026-09-01 12:00:00"
+}

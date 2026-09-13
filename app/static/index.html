@@ -29,9 +29,7 @@
           <summary>View payload (JSON)</summary>
           <pre id="payload-json"></pre>
         </details>
-        <label class="upload">or upload a transaction JSON
-          <input type="file" id="file" accept="application/json" />
-        </label>
+        <button id="custom-btn" class="secondary" type="button">✎ Enter custom JSON…</button>
         <button id="run">Run</button>
         <p id="status" class="status"></p>
       </div>
@@ -97,6 +95,19 @@
       </div>
     </section>
   </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card">
+      <h3>Custom transaction JSON</h3>
+      <p class="modal-hint">Paste or edit a transaction. Needs at least <code>card_id</code> and <code>amount</code>.</p>
+      <textarea id="modal-json" rows="14" spellcheck="false"></textarea>
+      <p id="modal-error" class="modal-error"></p>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="ghost" type="button">Cancel</button>
+        <button id="modal-run" type="button">Use &amp; run</button>
+      </div>
+    </div>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>

@@ -1,0 +1,10 @@
+{
+  "txn_id": "TXN_VELOCITY",
+  "card_id": "CARD_VELOCITY",
+  "device_id": "DEV_VELOCITY",
+  "ip": "10.0.0.30",
+  "merchant_id": "MERCH_ELECTRONICS",
+  "amount": 4500.0,
+  "geo": "IN-Delhi",
+  "ts": "2026-09-01 12:00:00"
+}
