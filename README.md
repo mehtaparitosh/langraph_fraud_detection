@@ -11,6 +11,8 @@ Everything runs on your machine — the graph, the ML model, the databases, the
 vector store, the checkpointer, and the web app. Only two things leave the
 machine: **LLM API calls** and **email**.
 
+![Sample Demo](fraudgraph.png)
+
 ---
 
 ## The decision graph
